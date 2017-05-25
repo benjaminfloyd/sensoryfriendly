@@ -7,8 +7,13 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+// .env 
+require('dotenv').config();
 
 var app = express();
+
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
