@@ -27,6 +27,23 @@ router.get('/', function(req, res) {
   });
 });
 
+// show users
+router.get('/:id', function(req, res) {
+  Users.findById(req.params.id)
+    .exec(function(err, users) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      console.log(users);
+      // res.send(users);
+      res.render('users/show', {
+        users: users
+      });
+    });
+    });
+
 
 module.exports = router;
 

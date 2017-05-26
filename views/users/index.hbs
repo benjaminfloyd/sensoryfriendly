@@ -1,11 +1,12 @@
-<h1>My Favorite Authors</h1>
+<h1>Users</h1>
 
 <ol>
   {{#each users}}
     <li>
-      <h1><a href="/users/{{this.id}}">{{this.fullName}}</a></h1>
-      <h3>{{this.country}}</h3>
-      <p>{{this.book_title}}, {{this.publication_year}}</p>
+      <h1><a href="/users/{{id}}">{{first_name}}</a></h1>
+      <h3>{{last_name}}</h3>
+      <p>{{email}}, 
+    {{username}}</p>
     </li>
   {{/each}}
 </ol>
