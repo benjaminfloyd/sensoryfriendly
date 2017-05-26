@@ -1,7 +1,8 @@
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.promise = global.Promise;
+// mongoose.promise = global.Promise;
 
 var UserSchema = new Schema({
   first_name: String,

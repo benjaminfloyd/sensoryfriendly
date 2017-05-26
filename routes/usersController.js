@@ -27,6 +27,12 @@ router.get('/', function(req, res) {
   });
 });
 
+// new users
+router.get('/new', function(req, res) {
+  res.render('users/new');
+  
+});
+
 // show users
 router.get('/:id', function(req, res) {
   Users.findById(req.params.id)
@@ -44,11 +50,6 @@ router.get('/:id', function(req, res) {
     });
   });
   
-// new users
-router.get('/new', function(req, res) {
-  res.render('users/new');
-});
-
 // create users
 router.post('/', function(req, res) {
   var users = new Users({
@@ -63,9 +64,11 @@ router.post('/', function(req, res) {
       return;
     }
 
-    console.log(users);
-    res.send(users);
+    // console.log(users);
+    // res.send(users);
+    res.redirect('/users');
   });
 });
+
 module.exports = router;
 

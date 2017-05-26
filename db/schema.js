@@ -1,20 +1,22 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
 mongoose.promise = global.Promise;
 
-var ItemSchema = new Schema({
-  name: String
-});
+// var ItemSchema = new Schema({
+//   name: String
+// });
 
 var UserSchema = new Schema({
   first_name: String,
   last_name: String,
+  username: String,
   email: { type: String, required: true, unique: true },
   created_at: Date,
   updated_at: Date,
-  items: [ItemSchema]
+  // items: [ItemSchema]
 });
 
 UserSchema.pre('save', function(next){
@@ -27,7 +29,7 @@ UserSchema.pre('save', function(next){
 });
 
 var UserModel = mongoose.model("User", UserSchema);
-var ItemModel = mongoose.model("Item", ItemSchema);
+// var ItemModel = mongoose.model("Item", ItemSchema);
 
 // CONNECTION EVENTS
 db.once('open', function() {
@@ -50,4 +52,8 @@ db.on('disconnected', function() {
   console.log('Mongoose disconnected');
 });
 
-module.exports = db;
+// module.exports = db;
+module.exports = {
+  User: UserModel,
+  Item: ItemModel
+};

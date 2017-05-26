@@ -2,10 +2,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+// var path = require('path');
+// var favicon = require('serve-favicon');
+// var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
 
 var hbs = require('hbs');
 app.set('view engine', 'hbs');
@@ -24,7 +24,7 @@ app.use('/users', usersController);
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/express-mongoose-lesson-starter');
+mongoose.connect('mongodb://localhost/sensoryfriendly');
 
 // Now that we're connected, let's save that connection to the database in a variable.
 var db = mongoose.connection;
@@ -61,3 +61,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+// get public static
