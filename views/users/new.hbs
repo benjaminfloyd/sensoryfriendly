@@ -1,32 +1,9 @@
-h1>Create a New User</h1>
-
-<div class="row">
-  <form action="/authors" method="POST" class="col-md-6 col-md-offset-3">
-    <div class="form-group">
-      <label for="first_name">First Name:</label>
-      <input type="text" name="first_name" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="last_name">Last Name:</label>
-      <input type="text" name="last_name" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="country">Country:</label>
-      <input type="text" name="country" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="book_title">Book Title:</label>
-      <input type="text" name="book_title" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="publication_year">Publication Year:</label>
-      <input type="text" name="publication_year" class="form-control">
-    </div>
-    <div>
-      <input type="submit" value="Submit" class="btn btn-primary">
-    </div>
-  </form>
-</div>
+<form method="POST" action="/users">
+    First Name: <input type="text" name="first_name" value="{{user.first_name}}"><br>
+    Last Name: <input type="text" name="last_name" value="{{user.last_name}}"><br>
+    Email: <input type="text" name="email" value="{{user.email}}"><br><br>
+    <input type="submit">
+</form>
 
 <a href="/users" class="btn btn-default">Main Page</a>
 

@@ -54,9 +54,8 @@ router.post('/', function(req, res) {
   var users = new Users({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    country: req.body.country,
-    book_title: req.body.book_title,
-    publication_year: req.body.publication_year
+    email: req.body.email,
+    username: req.body.username,
   });
   users.save(function(err, users) {
     if (err) {

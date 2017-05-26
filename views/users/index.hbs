@@ -1,12 +1,26 @@
+
 <h1>Users</h1>
 
-<ol>
-  {{#each users}}
-    <li>
-      <h1><a href="/users/{{id}}">{{first_name}}</a></h1>
-      <h3>{{last_name}}</h3>
-      <p>{{email}}, 
-    {{username}}</p>
-    </li>
-  {{/each}}
-</ol>
+<ul>
+    {{# each userList}}
+        <li>
+            <div><a href="/users/{{_id}}">View User</a></div>
+            <div><a href="/users/delete/{{_id}}">Delete User</a></div>
+            <div>ID: {{_id}}</div>
+            <div>First Name: {{first_name}}</div>
+            <div>Last Name: {{last_name}}</div>
+            <div>Email: {{email}}</div>
+            <div>Created At: {{created_at}}</div>
+            <div>Items: 
+                <ul>
+                    {{# each items}}
+                        <li>Name: {{name}}</li>
+                    {{/ each}}
+                </ul>
+            </div>
+        </li>
+        <br>
+    {{/ each}}
+</ul>
+
+<div><a href="/users/new">Create a New User</a></div>

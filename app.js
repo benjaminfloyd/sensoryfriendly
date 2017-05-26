@@ -1,41 +1,47 @@
+// Standard stuff
 var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
 
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-// .env 
-require('dotenv').config();
-
-var app = express();
-
-var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
-
-var db = require('./db');
-
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
+var hbs = require('hbs');
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
-app.use('/', index);
-app.use('/users', users);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+var indexController = require("./routes/indexController.js");
+app.use('/', indexController);
+
+var usersController = require("./routes/usersController.js");
+app.use('/users', usersController);
+
+// Mongoose stuff
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/express-mongoose-lesson-starter');
+
+// Now that we're connected, let's save that connection to the database in a variable.
+var db = mongoose.connection;
+
+// Will log an error if db can't connect to MongoDB
+db.on('error', function(err){
+  console.log(err);
+});
+
+// Will log "database has been connected" if it successfully connects.
+db.once('open', function() {
+  console.log("database has been connected!");
+});
+
+app.listen(4000, function(){
+  console.log("app listening on port 4000");
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
