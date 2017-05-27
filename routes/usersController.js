@@ -5,7 +5,7 @@ var router = express.Router();
 var Users = require('../models/users');
 
 
-// Index Users
+// Index Users (Shows All Users)
 router.get('/', function(req, res) {
   
   Users.find({})
@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
       return;
     }
 
-    console.log(users);
+    // console.log(users);
     // res.send(users);
     res.render('users/index', {
       users: users
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
   });
 });
 
-// Create new users
+// Create new users(Form)
 router.get('/new', function(req, res) {
   res.render('users/new');
   
@@ -52,6 +52,18 @@ router.post('/', function(req, res) {
   });
 });
 
+  // //save the newUser to the db
+  // newUser.save(function(error, newUser) {
+  //   if(error) {
+  //     console.log('error when adding new user: '+error);
+  //     return;
+  //   }
+  //   console.log('new user saved: '+ newUserInfo.name);
+  //   //redirect to users index page after saving
+  //   response.redirect('/users');
+  // })
+
+
 // Show Users by ID
 router.get('/:id', function(req, res) {
   Users.findById(req.params.id)
@@ -76,7 +88,7 @@ router.get('/edit/:id', function(req, res) {
   Users.findById(userId) 
     .exec(function(err, users) {
       if (err) {
-        console.log("Error while retrieving user with ID of " + userId);
+        console.log("Error while editing user " + userId);
                 console.log("Error message: " + error);
                 return;
       }
@@ -107,6 +119,7 @@ router.put('/:id', function (req
             }
 
             res.redirect('/users/' + userId);
+            
 
         });
 

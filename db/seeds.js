@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/sensoryfriendly');
 
 var Users = require("./models/users");
-// var Item = require('../models/item');
+var locations = require('../models/locations');
 mongoose.promise = global.Promise;
 
 
-// Item.remove({}, function(err){
+// locations.remove({}, function(err){
 //   console.log(err);
 // });
 User.remove({}, function(err){
@@ -18,7 +18,7 @@ var benjaminFloyd = new Users({
      last_name: 'Floyd',
      username: 'urbandad',
      email: 'benjaminfloyd@gmail.com',
-    //  business:[{ name:""}]
+     business:[{ name:"Studio Movie Grill"}]
 });
 
 // saving the users
