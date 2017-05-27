@@ -23,34 +23,13 @@ router.get('/', function(req, res) {
   });
 });
 
-// new users
+// Create new users
 router.get('/new', function(req, res) {
   res.render('users/new');
   
 });
 
-// show users
-router.get('/:id', function(req, res) {
-  Users.findById(req.params.id)
-    .exec(function(err, users) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-
-      console.log(users);
-      // res.send(users);
-      res.render('users/show', {
-        users: users
-      });
-    });
-  });
- //User Form
- router.get('/new', function(req, res){
-   res.render('users/new');
- });
-  
-// create users
+// create users route
 router.post('/', function(req, res) {
 
   var newUsersForm = req.body;
@@ -73,14 +52,9 @@ router.post('/', function(req, res) {
   });
 });
 
-/// Edit User
-router.patch('/edit/:id', function(req, res) {
-  Users.findByIdAndUpdate(req.params.id, {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    username: req.body.username,
-  }, { new: true })
+// Show Users by ID
+router.get('/:id', function(req, res) {
+  Users.findById(req.params.id)
     .exec(function(err, users) {
       if (err) {
         console.log(err);
@@ -93,13 +67,36 @@ router.patch('/edit/:id', function(req, res) {
         users: users
       });
     });
+  });
+
+/// Edit User
+router.get('/edit/:id', function(req, res) {
+  var userId = req.params.id;
+
+  Users.findById(userId) 
+    .exec(function(err, users) {
+      if (err) {
+        console.log("Error while retrieving user with ID of " + userId);
+                console.log("Error message: " + error);
+                return;
+      }
+
+      // console.log(users);
+      // res.send(users);
+      res.render('users/edit', {
+        users: users
+      });
+    });
 });
 
 // USER UPDATE ROUTE
-router.put('/:id', function (request, response) {
+router.put('/:id', function (req
+, res) {
 
-    var userId = request.params.id;
-    var newUserInfo = request.body;
+    var userId = req
+    .params.id;
+    var newUserInfo = req
+    .body;
 
     Users.findByIdAndUpdate(userId, newUserInfo, { new: true })
         .exec(function (error, user) {
@@ -109,7 +106,7 @@ router.put('/:id', function (request, response) {
                 return;
             }
 
-            response.redirect('/users/' + userId);
+            res.redirect('/users/' + userId);
 
         });
 
@@ -128,7 +125,7 @@ router.delete('/:id', function(req, res) {
       console.log('User deleted.');
       // res.send('User deleted.');
       // redirect back to the index route
-      res.redirect('/Users');  
+      res.redirect('/users');  
     });
 });
 module.exports = router;
