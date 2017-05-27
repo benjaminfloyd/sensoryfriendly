@@ -123,8 +123,7 @@ router.delete('/:id', function(req, res) {
       }
 
       console.log('User deleted.');
-      // res.send('User deleted.');
-      // redirect back to the index route
+      
       res.redirect('/users');  
     });
 });

@@ -4,12 +4,16 @@
 <ul>
     {{# each users}}
         <li>
+{{!--View User by ID--}}
             <div><a href="/users/{{_id}}">View User</a></div>
-            <div><a href="/users/delete/{{_id}}">Delete User</a></div>
+{{!--Delete User--}}
+            <div><a href="/users/{{_id}}">Delete User</a></div>
+
             <div>ID: {{_id}}</div>
             <div>First Name: {{first_name}}</div>
             <div>Last Name: {{last_name}}</div>
             <div>Email: {{email}}</div>
+            <div>Username:{{username}}</div>
             <div>Items: 
                 <ul>
                     {{# each items}}
