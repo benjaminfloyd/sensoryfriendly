@@ -86,9 +86,9 @@ router.get('/edit/:id', function(req, res) {
   var userId = req.params.id;
 
   Users.findById(userId) 
-    .exec(function(err, users) {
+    .exec(function(err, user) {
       if (err) {
-        console.log("Error while editing user " + userId);
+        console.log("Error while editing of " + userId);
                 console.log("Error message: " + error);
                 return;
       }
@@ -96,7 +96,7 @@ router.get('/edit/:id', function(req, res) {
       // console.log(users);
       // res.send(users);
       res.render('users/edit', {
-        users: users
+        user: user
       });
     });
 });
@@ -119,7 +119,6 @@ router.put('/:id', function (req
             }
 
             res.redirect('/users/' + userId);
-            
 
         });
 
