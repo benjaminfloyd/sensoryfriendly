@@ -4,6 +4,8 @@ var router = express.Router();
 
 var Users = require('../models/users');
 
+// var locations = require("../models/locations");
+
 
 // Index Users (Shows All Users)
 router.get('/', function(req, res) {

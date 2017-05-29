@@ -1,0 +1,29 @@
+<h1>{{title}}</h1>
+<h3>Users</h3>
+
+<ul>
+    {{# each locations}}
+        <li>
+{{!--View User by ID--}}
+            <div><a href="/users/{{_id}}">View User</a></div>
+{{!--Delete User--}}
+            <div><a href="/users/{{_id}}">Delete User</a></div>
+
+            <div>ID: {{_id}}</div>
+            <div>First Name: {{first_name}}</div>
+            <div>Last Name: {{last_name}}</div>
+            <div>Email: {{email}}</div>
+            <div>Username:{{username}}</div>
+            <div>Locations: 
+                <ul>
+                    {{# each locations}}
+                        <li>Name: {{name}}</li>
+                    {{/ each}}
+                </ul>
+            </div>
+        </li>
+        <br>
+    {{/ each}}
+</ul>
+
+<div><a href="/users/new">Create a New User</a></div>

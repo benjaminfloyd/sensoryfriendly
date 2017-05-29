@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 mongoose.promise = global.Promise;
 
 
-var LocationsSchema = new Schema({
+var LocationSchema = new Schema({
   name: String
 });
 
@@ -14,10 +14,9 @@ var UserSchema = new Schema({
   first_name: String,
   last_name: String,
   username: String,
-  email: { type: String, required: true, unique: true },
-  created_at: Date,
-  updated_at: Date,
-  locations: [LocationsSchema]
+  email: String, 
+  username: String,
+  locations: [LocationSchema]
 });
 
 UserSchema.pre('save', function(next){
@@ -30,7 +29,7 @@ UserSchema.pre('save', function(next){
 });
 
 var UserModel = mongoose.model("User", UserSchema);
-var LocationsModel = mongoose.model("Locations", LocationsSchema);
+var LocationModel = mongoose.model("Location", LocationSchema);
 
 
 
@@ -58,5 +57,5 @@ db.on('disconnected', function() {
 // module.exports = db;
 module.exports = {
   User: UserModel,
-  Locations: LocationsModel
+  Location: LocationModel
 };
