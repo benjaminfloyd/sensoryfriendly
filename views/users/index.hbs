@@ -10,69 +10,9 @@
     <div><h1>{{last_name}}, {{first_name}}</h1>
         <h3>Username: {{username}}</h3>
         <h3>Email: {{email}}</h3></div>
-     
-        <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  View User 
-</button>
-
-<!-- Modal -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{users._id}}
-        <h4 class="modal-title" id="myModalLabel">{{_id}}</h4>
-      </div>
-      <div class="modal-body">
-        <div>
-            {{{body}}}
-    <h3>User {{users._id}}</h3>
-
-    <div>First Name: {{users.first_name}}</div>
-    <div>Last Name: {{users.last_name}}</div>
-    <div>Email: {{users.email}}</div>
-    <div>Username: {{users.username}}</div>
-    {{!--<div>Locations: 
-        <ul>
-            {{# each locations}}
-                <span><li>Name: {{name}}</li></span> 
-                <span><a href="/users/{{../user.id}}/locations/{{_id}}/edit">Edit</a></span>
-                <span><a href="/users//{{../user.id}}/locations/{{id}}/delete">Delete</a></span>
-            {{/ each}}
-        </ul>
-    </div>--}}
-
-    <div><a href="/users/edit/{{users.id}}">Edit This User</a></div>
-    
-    <div><a href="/users/{{users.id}}/locations/new">Add a New Locations</a></div>
-    <div><a href="/users">Back to Users</a></div>
-
-</div>
-<a href="/users" class="btn btn-default">Main Page</a>
-
-<form action="/users/{{users.id}}?_method=DELETE" method="POST">
-  <input type="submit" value="DELETE" class="btn btn-danger"/>
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-   
-    
-    
-    
-    
-    
     
     <!-- Single button -->
-        {{!--<div class="btn-group btn-group-lg btn-block">
+        <div class="btn-group btn-group-lg btn-block">
         <button type="button" class="btn btn-warning btn-lg btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            Edit User<span class="caret"></span>
         </button>
@@ -80,21 +20,9 @@
             <li style="background: #66B744; color: #fff;"><a href="/users/{{_id}}"><h4>ID:{{_id}}</h4></a>
             </li>  
         </ul>
-        </div>--}}
-
-</div>
-
-
-{{!--<a href="/users/new" class="btn btn-primary btn-lg btn-block">Create New User</a>
-<a href="/" class="btn btn-info btn-lg btn-block">Main Page</a>--}}
-		</div>
-	</div>
-</div>
-
-
-
+        </div>
 {{/ each}}
-
+</div>
 <a href="/users/new" class="btn btn-primary btn-lg btn-block">Create New User</a>
 <a href="/" class="btn btn-info btn-lg btn-block">Main Page</a>
 		</div>

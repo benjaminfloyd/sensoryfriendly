@@ -4,7 +4,7 @@ var router = express.Router();
 
 var Users = require('../models/users');
 
-// var locations = require("../models/locations");
+var locations = require("../models/locations");
 
 
 // Index Users (Shows All Users)
@@ -89,12 +89,12 @@ router.get('/:id', function(req, res) {
 router.get('/edit/:id', function(req, res) {
   var userId = req.params.id;
 
- var users = new Users({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    username: req.body.username,
-  });
+//  var users = new Users({
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     email: req.body.email,
+//     username: req.body.username,
+  // });
   Users.findById(userId) 
     .exec(function(err, user) {
       if (err) {
@@ -148,6 +148,34 @@ router.delete('/:id', function(req, res) {
       
       res.redirect('/users');  
     });
+});
+
+// Locations
+
+// // ADD A NEW ITEM
+router.post('/:userId/locations', function (request, response) {
+    // grab the user ID we want to create a new item for
+    var userId = request.params.userId;
+    // then grab the new Item that we created using the form
+    var newItemName = request.body.business_name;
+    // Find the User in the database we want to save the new Item for
+    Users.findById(userId)
+        .exec(function (err, user) {
+            // add a new Item to the User's list of locations, using the data
+            // we grabbed off of the form
+            user.locations.push(new Item({ business_name: newItemName }));
+            // once we have added the new Item to the user's collection 
+            // of locations, we can save the user
+            user.save(function (err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                // once the user has been saved, we can redirect back 
+                // to the User's show page, and we should see the new item
+                response.redirect('/users/' + userId);
+            })
+        });
 });
 
 

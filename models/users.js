@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// var locations = require("../models/locations");
 // mongoose.promise = global.Promise;
 
 var UserSchema = new Schema({

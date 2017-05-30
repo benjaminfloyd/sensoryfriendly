@@ -5,15 +5,15 @@
     <div>Last Name: {{users.last_name}}</div>
     <div>Email: {{users.email}}</div>
     <div>Username: {{users.username}}</div>
-    {{!--<div>Locations: 
+    <div>Locations: 
         <ul>
             {{# each locations}}
-                <span><li>Name: {{name}}</li></span> 
+                <span><li>Business Name: {{business_name}}</li></span> 
                 <span><a href="/users/{{../user.id}}/locations/{{_id}}/edit">Edit</a></span>
                 <span><a href="/users//{{../user.id}}/locations/{{id}}/delete">Delete</a></span>
             {{/ each}}
         </ul>
-    </div>--}}
+    </div>
 
     <div><a href="/users/edit/{{users.id}}">Edit This User</a></div>
     
