@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 <h3>Users</h3>
-
+<input class="form-control" type="text" placeholder="Readonly input here…" readonly>
 <ul>
     {{# each users}}
         <li>
@@ -8,7 +8,7 @@
             <div><a href="/users/{{_id}}">View User</a></div>
 {{!--Delete User--}}
             <div><a href="/users/{{_id}}">Delete User</a></div>
-
+            <div><input class="form-control" type="text" placeholder="Readonly input here…" readonly></div>
             <div>ID: {{_id}}</div>
             <div>First Name: {{first_name}}</div>
             <div>Last Name: {{last_name}}</div>
