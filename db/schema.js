@@ -37,7 +37,7 @@ var UserSchema = new Schema({
   last_name: String,
   email: String,
   username: String, 
-  // locations: [LocationSchema]
+  locations: [LocationSchema]
 });
 
 UserSchema.pre('save', function(next){
