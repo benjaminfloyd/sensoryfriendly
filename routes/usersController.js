@@ -79,6 +79,8 @@ router.get('/:id', function(req, res) {
       // res.send(users);
       res.render('users/show', {
         users: users
+
+        
       });
     });
   });
@@ -147,5 +149,7 @@ router.delete('/:id', function(req, res) {
       res.redirect('/users');  
     });
 });
+
+
 module.exports = router;
 
