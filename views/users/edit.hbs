@@ -1,21 +1,15 @@
-{{!--<h1>Edit {{fullName}}</h1>
-
+<h1>Edit {{fullName}}</h1>
 <form method="POST" action="/users/{{user._id}}?_method=PUT">
     First Name: <input type="text" name="first_name" value="{{user.first_name}}"><br>
-
     Last Name: <input type="text" name="last_name" value="{{user.last_name}}"><br>
-
     Email: <input type="text" name="email" value="{{user.email}}"><br><br>
-
-    Username: <input type="text" name="email" value="{{user.username}}"><br><br>
-
+    Username: <input type="text" name="username" value="{{user.username}}"><br><br>
     <input type="submit" value="Submit" class="btn btn-primary">
 </form>
-
 <div>
   <a href="/users/{{users.id}}" class="btn btn-default">Back</a>
   <a href="/users" class="btn btn-default">Main Page</a>
-</div>--}}
+</div>
 
 <div class="container">
 <div class="row">
@@ -23,159 +17,3 @@
 <form class="form-horizontal">
 <fieldset>
 <form method="POST" action="/users/{{user._id}}?_method=PUT">
-  <!-- Form Name -->
-  <legend>Edit Profile</legend>
-
-  <!-- Text input-->
-
-
-
-
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="first_name">First Name</label>  
-    <div class="col-md-4">
-  <div class="input-group">
-        <input name="frist_name" type="text" placeholder="First Name" class="form-control">
-        </div>
-
-      
-    </div>
-
-    
-  </div>
-
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Date Of Birth">Date Of Birth</label>  
-    <div class="col-md-4">
-
-    <div class="input-group">
-        <input id="dob" name="Date Of Birth" type="text" placeholder="Date Of Birth" class="form-control input-md">
-        </div>
-    
-      
-    </div>
-  </div>
-
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Father">Father's name</label>  
-    <div class="col-md-4">
-    <div class="input-group">
-        <input id="Father" name="Father" type="text" placeholder="Father's name" class="form-control input-md">
-
-        </div>
-      
-    </div>
-  </div>
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Mother">Mother's Name</label>  
-    <div class="col-md-4">
-    <div class="input-group">
-    <input id="Mother" name="Mother" type="text" placeholder="Mother's Name" class="form-control input-md">
-
-        </div>
-      
-    </div>
-  </div>
-
-  <!-- Multiple Radios (inline) -->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Gender">Gender</label>
-    <div class="col-md-4"> 
-      <label class="radio-inline" for="Gender-0">
-        <input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">
-        Male
-      </label> 
-      <label class="radio-inline" for="Gender-1">
-        <input type="radio" name="Gender" id="Gender-1" value="2">
-        Female
-      </label> 
-      <label class="radio-inline" for="Gender-2">
-        <input type="radio" name="Gender" id="Gender-2" value="3">
-        Other
-      </label>
-    </div>
-  </div>
-
-  <!-- Multiple Radios (inline) -->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="radios">Marital Status:</label>
-    <div class="col-md-4"> 
-      <label class="radio-inline" for="radios-0">
-        <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-        Married
-      </label> 
-      <label class="radio-inline" for="radios-1">
-        <input type="radio" name="radios" id="radios-1" value="2">
-        Unmarried
-      </label>
-    </div>
-  </div>
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Email Address">Phone No</label>  
-    <div class="col-md-4">
-    <div class="input-group">
-      <input id="phoneno" name="phoneno" type="text" placeholder="Phone No" class="form-control input-md">
-        </div>
-    </div>
-  </div>
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Email Address">Email Address</label>  
-    <div class="col-md-4">
-    <div class="input-group">
-      <input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md">
-      
-        </div>
-    
-    </div>
-  </div>
-
-  <!-- Multiple Checkboxes -->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Diagnosis Known">Sensory Related Disorders</label>
-    <div class="col-md-4">
-    <div class="checkbox">
-      <label for="Diagnosis Known-0">
-        <input type="checkbox" name="Diagnosis Known" id="Diagnosis Known-0" value="1">
-        Autism
-      </label>
-      </div>
-    <div class="checkbox">
-      <label for="Diagnosis Known-1">
-        <input type="checkbox" name="Diagnosis Known" id="Diagnosis Known-1" value="2">
-        Sensory Processing disorder
-      </label>
-      </div>
-    <div class="checkbox">
-      <label for="Diagnosis Known-2">
-        <input type="checkbox" name="Diagnosis Known" id="Diagnosis Known-2" value="3">
-        ADD/ADHD
-      </label>
-      </div>
-    
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-4 control-label" ></label>  
-    <div class="col-md-4">
-    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</a>
-    <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
-      
-    </div>
-  </div>
-
-  </fieldset>
-</form>
-</div>
-
-</div>
-   </div>

@@ -6,8 +6,8 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
   first_name: String,
   last_name: String,
-  username: String,
-  email: String, 
+  email: String,
+  username: String, 
   // locations: [LocationSchema]
 });
 

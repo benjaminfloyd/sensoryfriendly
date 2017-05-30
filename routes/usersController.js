@@ -87,6 +87,12 @@ router.get('/:id', function(req, res) {
 router.get('/edit/:id', function(req, res) {
   var userId = req.params.id;
 
+ var users = new Users({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    username: req.body.username,
+  });
   Users.findById(userId) 
     .exec(function(err, user) {
       if (err) {

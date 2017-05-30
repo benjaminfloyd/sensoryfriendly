@@ -13,9 +13,8 @@ var LocationSchema = new Schema({
 var UserSchema = new Schema({
   first_name: String,
   last_name: String,
-  username: String,
-  email: String, 
-  username: String,
+  email: String,
+  username: String, 
   locations: [LocationSchema]
 });
 
