@@ -6,7 +6,6 @@ var Users = require('../models/users');
 
 var locations = require("../models/locations");
 
-
 // Index Users (Shows All Users)
 router.get('/', function(req, res) {
   
@@ -154,34 +153,38 @@ router.delete('/:id', function(req, res) {
 });
 
 // Locations
+// Get new from
 
-// // ADD A NEW ITEM
-router.post('/:userId/locations', function (request, response) {
-    // grab the user ID we want to create a new item for
-    var userId = request.params.userId;
-    // then grab the new Item that we created using the form
-    var newItemName = request.body.business_name;
-    // Find the User in the database we want to save the new Item for
+router.get('/:userId/locations/new', function (req, res) {
+
+    // grab the ID of the user whose Item we would like to edit
+    var userId = req.params.userId;
+
+    // then grab the ID of the Item we would like to edit for the User above
+    var locationId = req.params.locationId;
+
+    // find the User by ID
     Users.findById(userId)
-        .exec(function (err, user) {
-            // add a new Item to the User's list of locations, using the data
-            // we grabbed off of the form
-            user.locations.push(new Item({ business_name: newItemName }));
-            // once we have added the new Item to the user's collection 
-            // of locations, we can save the user
-            user.save(function (err) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                // once the user has been saved, we can redirect back 
-                // to the User's show page, and we should see the new item
-                response.redirect('/users/' + userId);
-            })
-        });
-});
+        .exec(function (error, user) {
 
-// SHOW THE ITEM EDIT FORM
+            // once we have found the User, find the Item in its' array 
+            // of items that matches the Item ID above
+            var locationToEdit = user.locations.find(function (location) {
+                return location.id === locationId;
+            })
+
+            // Once we have found the item we would like to edit, render the 
+            // Item edit form with all of the information we would like to put 
+            // into the form
+            res.render('locations/edit', {
+                userId: userId,
+                locationId: locationId,
+                locationToEdit: locationToEdit
+            })
+        })
+
+});
+// Get Form
 router.get('/:userId/locations/:locationId/edit', function (req, res) {
 
     // grab the ID of the user whose Item we would like to edit
@@ -211,6 +214,32 @@ router.get('/:userId/locations/:locationId/edit', function (req, res) {
         })
 
 });
+// // ADD A NEW ITEM
+router.post('/:userId/locations', function (req, res) {
+    // grab the user ID we want to create a new item for
+    var userId = req.params.userId;
+    // then grab the new Item that we created using the form
+    var newLocationName = req.body.business_name;
+    // Find the User in the database we want to save the new Item for
+    Users.findById(userId)
+        .exec(function (err, user) {
+            // add a new Item to the User's list of locations, using the data
+            // we grabbed off of the form
+            user.location.push(new Item({ business_name: newLocationName }));
+            // once we have added the new Item to the user's collection 
+            // of locations, we can save the user
+            user.save(function (err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                // once the user has been saved, we can redirect back 
+                // to the User's show page, and we should see the new item
+                res.redirect('/users/' + userId);
+            })
+        });
+});
+
 
 // EDIT AN ITEM
 router.put('/:userId/locations/:locationId', function (req, res) {

@@ -1,10 +1,41 @@
-<h1>Edit {{fullName}}</h1>
+<div class="row main">
+		<div class="main-login main-center">
+			  <h1>Sensory Friendly</h1>
+<h2>Edit USer</h2>
 <form method="POST" action="/users/{{user._id}}?_method=PUT">
-    First Name: <input type="text" name="first_name" value="{{user.first_name}}"><br>
-    Last Name: <input type="text" name="last_name" value="{{user.last_name}}"><br>
-    Email: <input type="text" name="email" value="{{user.email}}"><br><br>
-    Username: <input type="text" name="username" value="{{user.username}}"><br><br>
-    Business Name: <input type="text" name="business_name" value="{{business_name}}"><br><br>
+    <h3>User {{users._id}}</h3>
+<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">First Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+    <div>First Name:<input type="text" name="first_name" value="{{user.first_name}}"></div>
+                  </div>
+							</div>
+						</div>
+{{!--last_name--}}
+<div class="form-group">
+							<label for="Last Name" class="cols-sm-2 control-label">Your Last Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+    <div>Last Name:<input type="text" name="last_name" value="{{user.last_name}}"></div>
+    </div>
+							</div>
+						</div>
+
+
+    <div>Email: <input type="text" name="email" value="{{user.email}}"></div>
+    <div>Username:<input type="text" name="username" value="{{user.username}}"></div>
+    <div>Locations:
+            {{# each user.locations}}
+                <span><li>Business Name: {{business_name}}</li></span> 
+                {{!--<span><a href="/users/{{../user.id}}/locations/{{_id}}/edit">Edit</a></span>
+                <span><a href="/users//{{../user.id}}/locations/{{id}}/delete">Delete</a></span>--}}
+            {{/ each}}
+        </ul>
+    </div>
+
 
     <input type="submit" value="Submit" class="btn btn-primary">
 </form>
@@ -13,9 +44,7 @@
   <a href="/users" class="btn btn-default">Main Page</a>
 </div>
 
-<div class="container">
-<div class="row">
-<div class="col-md-10 ">
-<form class="form-horizontal">
-<fieldset>
-<form method="POST" action="/users/{{user._id}}?_method=PUT">
+
+          </div>
+			</div>
+  </div>
