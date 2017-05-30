@@ -41,6 +41,8 @@ router.post('/', function(req, res) {
     last_name: req.body.last_name,
     email: req.body.email,
     username: req.body.username,
+    business_name: req.body.location
+
   });
   users.save(function(err, users) {
     if (err) {
@@ -119,6 +121,7 @@ router.put('/:id', function (req
     .params.id;
     var newUserInfo = req
     .body;
+    console.log(req.body);
 
     Users.findByIdAndUpdate(userId, newUserInfo, { new: true })
         .exec(function (error, user) {
@@ -175,6 +178,76 @@ router.post('/:userId/locations', function (request, response) {
                 // to the User's show page, and we should see the new item
                 response.redirect('/users/' + userId);
             })
+        });
+});
+
+// SHOW THE ITEM EDIT FORM
+router.get('/:userId/locations/:locationId/edit', function (req, res) {
+
+    // grab the ID of the user whose Item we would like to edit
+    var userId = req.params.userId;
+
+    // then grab the ID of the Item we would like to edit for the User above
+    var locationId = req.params.locationId;
+
+    // find the User by ID
+    Users.findById(userId)
+        .exec(function (error, user) {
+
+            // once we have found the User, find the Item in its' array 
+            // of items that matches the Item ID above
+            var locationToEdit = user.locations.find(function (location) {
+                return location.id === locationId;
+            })
+
+            // Once we have found the item we would like to edit, render the 
+            // Item edit form with all of the information we would like to put 
+            // into the form
+            res.render('locations/edit', {
+                userId: userId,
+                locationId: locationId,
+                locationToEdit: locationToEdit
+            })
+        })
+
+});
+
+// EDIT AN ITEM
+router.put('/:userId/locations/:locationId', function (req, res) {
+
+    // find the ID of the user we would like to edit
+    var userId = req.params.userId;
+
+    // find the ID of the Item we would like to edit for the User above
+    var locationId = req.params.locationId;
+
+    // grab the edited information about the Item from the form
+    var editedLocationFromForm = req.body;
+
+    // find the User by ID
+    Users.findById(userId)
+        .exec(function (error, user) {
+
+            // once we have found the User, find the Item in that user's 
+            // collection of Items that matches our Item ID above
+            var locationToEdit = user.locations.find(function (location) {
+                return location.id === locationId;
+            })
+
+            // update the item we would like to edit with the new 
+            // information from the form
+            locationToEdit.business_name = editedLocationFromForm.business_name;
+
+            // once we have edited the Item, save the user to the database
+            user.save(function (error, user) {
+                
+                // Once we have saved the user with its edited Item, redirect 
+                // to the show page for that User. We should see the Item 
+                // information updated.
+                res.redirect('/users/' + userId)
+            });
+
+            
         });
 });
 

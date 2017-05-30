@@ -8,8 +8,8 @@
     <div>Locations:
             {{# each users.locations}}
                 <span><li>Business Name: {{business_name}}</li></span> 
-                {{!--<span><a href="/users/{{../user.id}}/locations/{{_id}}/edit">Edit</a></span>
-                <span><a href="/users//{{../user.id}}/locations/{{id}}/delete">Delete</a></span>--}}
+                <span><a href="/users/{{../users.id}}/locations/{{_id}}/edit">Edit</a></span>
+                <span><a href="/users//{{../users.id}}/locations/{{id}}/delete">Delete</a></span>
             {{/ each}}
         </ul>
     </div>
