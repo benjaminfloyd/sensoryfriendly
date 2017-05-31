@@ -161,7 +161,7 @@ router.get('/:userId/locations/new', function (req, res) {
     var userId = req.params.userId;
 
     // then grab the ID of the Item we would like to edit for the User above
-    var locationId = req.params.locationId;
+    
 
     // find the User by ID
     Users.findById(userId)
@@ -169,21 +169,15 @@ router.get('/:userId/locations/new', function (req, res) {
 
             // once we have found the User, find the Item in its' array 
             // of items that matches the Item ID above
-            var locationToEdit = user.locations.find(function (location) {
-                return location.id === locationId;
-            })
+          //  users.locations.push(new locations({ business_name: newlocationName }));
 
             // Once we have found the item we would like to edit, render the 
             // Item edit form with all of the information we would like to put 
             // into the form
-            res.render('locations/edit', {
-                userId: userId,
-                locationId: locationId,
-                locationToEdit: locationToEdit
+            res.redirect('/users/' + userId);
             })
-        })
+        });
 
-});
 // Get Form
 router.get('/:userId/locations/:locationId/edit', function (req, res) {
 
